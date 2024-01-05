@@ -1,8 +1,24 @@
 function App() {
   return (
-    <div className="App">
-      <h1>Hello freaky bitches</h1>
-      <p>Spread love not hate!</p>
+    <div className="Wrapper">
+      <header>
+        <div className="headerLeft">
+        <svg />
+        <div className="headerInfo">
+          <h3> React Sneakers </h3>
+          <p>Магазин лучших кроссовок</p>
+        </div>
+        </div>
+        <ul className="headerRight=">
+          <li>
+            <svg />
+            <span>1002 руб.</span>
+          </li>
+          <li>
+            <svg />
+          </li>
+        </ul>
+      </header>
     </div>
   );
 }
