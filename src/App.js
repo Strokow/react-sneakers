@@ -22,8 +22,66 @@ function App() {
         </ul>
       </header>
       <div className="content p-40">
-        <h1>Все кроссовки</h1>
+  <h1 className="mb-40">Все кроссовки</h1>
+  <div className="d-flex">
+  <div className="card">
+    <img width={140} height={140} src="img/sneakers1.jpg" alt="Sneakers" />
+    <h5>Мужские кроссовки Adidas Stan Smith</h5>
+    <div className="d-flex justify-between align-center">
+      <div className="d-flex flex-column">
+        <span>Цена:</span>
+        <b>7999 ₽</b>
       </div>
+      <button className="button">
+        <img width={20} height={20} src="img/plusik.png" alt="Plusik" />
+      </button>
+    </div>
+    
+  </div>
+  <div className="card">
+    <img width={140} height={140} src="img/sneakers2.jpg" alt="Sneakers" />
+    <h5>Мужские кроссовки Adidas Stan Smith</h5>
+    <div className="d-flex justify-between align-center">
+      <div className="d-flex flex-column">
+        <span>Цена:</span>
+        <b>7999 ₽</b>
+      </div>
+      <button className="button">
+        <img width={20} height={20} src="img/plusik.png" alt="Plusik" />
+      </button>
+    </div>
+    
+  </div>
+  <div className="card">
+    <img width={140} height={140} src="img/sneakers3.jpg" alt="Sneakers" />
+    <h5>Мужские кроссовки Adidas Stan Smith</h5>
+    <div className="d-flex justify-between align-center">
+      <div className="d-flex flex-column">
+        <span>Цена:</span>
+        <b>7999 ₽</b>
+      </div>
+      <button className="button">
+        <img width={20} height={20} src="img/plusik.png" alt="Plusik" />
+      </button>
+    </div>
+    
+  </div>
+  <div className="card">
+    <img width={140} height={140} src="img/sneakers4.jpg" alt="Sneakers" />
+    <h5>Мужские кроссовки Adidas Stan Smith</h5>
+    <div className="d-flex justify-between align-center">
+      <div className="d-flex flex-column">
+        <span>Цена:</span>
+        <b>7999 ₽</b>
+      </div>
+      <button className="button">
+        <img width={20} height={20} src="img/plusik.png" alt="Plusik" />
+      </button>
+    </div>
+    
+  </div>
+  </div>
+</div>
     </div>
   );
 }
