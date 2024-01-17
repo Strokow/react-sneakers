@@ -5,9 +5,10 @@ function App() {
     <div className="wrapper clear">
       <div className="overlay">
         <div className="drawer">
-          <h2>Корзина</h2>
+          <h2 className="mb-30">Корзина</h2>
 
-          <div className="cartItem d-flex align-center">
+          <div className="items"> {/* Не получилось спустить в самый низ cartTotalBlock */}
+          <div className="cartItem d-flex align-center mb-20">
             <img 
             className="mr-20" 
             width={100} 
@@ -20,14 +21,42 @@ function App() {
             </div>
             <img className="removeBtn mb-5" width={25} height={25} src="/img/remove.png" alt="Remove"></img>
           </div>
-        </div>
+          <div className="cartItem d-flex align-center mb-20">
+            <img 
+            className="mr-20" 
+            width={100} 
+            height={100} 
+            src="/img/sneakers3.jpg" 
+            alt="Sneakers"></img>
+            <div className="mr-20">
+              <p className="mb-5">Женские кроссовки Nike</p>
+              <b>10000 ₽</b>
+            </div>
+            <img className="removeBtn mb-5" width={25} height={25} src="/img/remove.png" alt="Remove"></img>
+          </div>
+          
+          </div>
+          <ul className="cartTotalBlock">
+            <li>
+              <span>Итого: </span>
+              <div></div>
+              <b>17999 ₽</b>
+            </li>
+            <li>
+            <span>Налог 5%: </span>
+              <div></div>
+              <b>3000 ₽</b>
+            </li>
+          </ul>
+          <button className="greenButton">Оформить заказ</button>
+        </div> 
       </div>
       <header className="d-flex justify-between align-center p-40" >
         <div className="d-flex align-center">
           <img width={430} height={98} src="img/ultrasteplogo.png" alt="Ultra Step" />
           <div>
           
-            <p className="description text-uppercase">Магазин фирменных кроссовок</p>
+            <p className="description text-uppercase">Магазин фирменных кроссовок</p> {/* Не получилось поместить эту надпись прямо под логотипом */}
           </div>
         </div>
         <ul className="d-flex">
