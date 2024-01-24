@@ -1,4 +1,5 @@
 function Card(props) {
+    console.log(props)
     return (
         <div className="card">
             <div className="favorite">
@@ -11,7 +12,7 @@ function Card(props) {
                     <span>Цена:</span>
                     <b>{props.price}</b>
                 </div>
-                <button className="button">
+                <button className="button" onClick={props.onClick}>
                     <img width={20} height={20} src="img/plusik.png" alt="Plusik" />
                 </button>
             </div>
