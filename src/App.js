@@ -27,8 +27,23 @@ function App() {
   <div className="d-flex">
     <Card 
     title="Мужские кроссовки Adidas Stan Smith" 
-    price={7999} 
-    imageUrl="/img/sneakers/1.jpg"
+    price={'7999 ₽'} 
+    imageUrl="/img/sneakers1.jpg"
+    />
+    <Card 
+    title="Мужские кроссовки Nike Jordan" 
+    price={'5599 ₽'} 
+    imageUrl="/img/sneakers2.jpg"
+    />
+    <Card 
+    title="Женские кроссовки Nike Pink" 
+    price={'9999 ₽'} 
+    imageUrl="/img/sneakers3.jpg"
+    />
+    <Card 
+    title="Мужские кроссовки New Balance 574s" 
+    price={'7999 ₽'} 
+    imageUrl="/img/sneakers4.jpg"
     />
    
   </div>
