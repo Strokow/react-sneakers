@@ -27,8 +27,10 @@ const arr = [
 ];
 
 function App() {
+  
   return (
     <div className="wrapper clear">
+     
       <Drawer />
       <Header />
       <div className="content p-40">
@@ -44,7 +46,8 @@ function App() {
             <Card title={obj.title} 
             price={obj.price} 
             imageUrl={obj.imageUrl}
-            onClick={()=> console.log(obj)}
+            onFavorite={()=> console.log('Добавили в закладки')}
+            onPlus={()=> console.log('Нажали плюс')}
             />
           ))}
         </div>
