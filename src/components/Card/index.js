@@ -3,10 +3,10 @@ import styles from './Card.module.scss';
 console.log(styles);
 
 function Card(props) {
-    const [isAdded, setIsAdded] = React.useState();
+    const [isAdded, setIsAdded] = React.useState(false);
 
     const onClickPlusik = () => {
-        setIsAdded();
+        setIsAdded(!isAdded);
     }
 
     return (
@@ -21,7 +21,7 @@ function Card(props) {
                     <span>Цена:</span>
                     <b>{props.price}</b>
                 </div>
-                    <img className={styles.plusik} onClick={props.onPlus} width={20} height={20} src="img/greyplus.png" alt="Plusik" />
+                    <img className={styles.plusik} onClick={onClickPlusik} width={20} height={20} src={isAdded ? "/img/done.png" : "/img/greyplus.png"} alt="Plusik" />
             </div>
         </div>
     );
