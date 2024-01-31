@@ -6,7 +6,12 @@
     background-color: #ffffff;
     margin-right: 30px;
     transition: box-shadow 0.2s ease-in-out, transform 0.2s ease-in-out;
-    cursor: pointer;
+    
+    .plusik {
+      cursor: pointer;
+      
+
+    }
   
     &:hover {
       box-shadow: 0px 20px 30px rgb(196, 196, 196);
