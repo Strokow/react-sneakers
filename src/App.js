@@ -15,9 +15,9 @@ function App() {
       .then((data) => setItems(data));
   }, []);
 
-  const onAddToCart = () => {
-    alert(123);
-  }
+  const onAddToCart = (obj) => {
+    setCartItems([...cartItems, obj])
+  };
 
   const onChangeSearchInput = (event) => {
     setSearchValue(event.target.value);
@@ -43,7 +43,7 @@ function App() {
               price={item.price} 
               imageUrl={item.imageUrl}
               onFavorite={() => console.log('Добавили в закладки')}
-              onPlus={onAddToCart}
+              onPlus={(obj) => onAddToCart(obj)}
             />
           ))}
         </div>
