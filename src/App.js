@@ -15,6 +15,10 @@ function App() {
       .then(res => {
         setItems(res.data);
       });
+      axios.get('https://65d8caaec96fbb24c1bc5059.mockapi.io/Cart')
+      .then(res => {
+        setCartItems(res.data);
+      });
   }, []);
   
   const onAddToCart = (obj) => {
