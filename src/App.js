@@ -15,7 +15,7 @@ function App() {
       .then(res => {
         setItems(res.data);
       });
-      axios.get('https://65d8caaec96fbb24c1bc5059.mockapi.io/Cart')
+    axios.get('https://65d8caaec96fbb24c1bc5059.mockapi.io/Cart')
       .then(res => {
         setCartItems(res.data);
       });
@@ -28,13 +28,23 @@ function App() {
       });
   };
   
+  const onRemoveItem = (id) => {
+    axios.delete(`https://65d8caaec96fbb24c1bc5059.mockapi.io/Cart/${id}`)
+      .then(res => {
+        setCartItems((prev) => prev.filter(item => item.id !== id));
+      })
+      .catch(error => {
+        console.error('Error removing item:', error);
+      });
+  };
+  
   const onChangeSearchInput = (event) => {
     setSearchValue(event.target.value);
   };
   
   return (
     <div className="wrapper clear">
-      {cartOpened && <Drawer items={cartItems} onClose={() => setCartOpened(false)} />}
+      {cartOpened && <Drawer items={cartItems} onClose={() => setCartOpened(false)} onRemove={onRemoveItem} />}
       <Header onClickCart={() => setCartOpened(true)} />
       <div className="content p-40">
         <div className="d-flex align-center justify-between mb-40">
@@ -51,8 +61,6 @@ function App() {
               title={item.title} 
               price={item.price} 
               imageUrl={item.imageUrl}
-              onFavorite={() => console.log('Добавили в закладки')}
-              onPlus={() => onAddToCart(item)}
             />
           ))}
         </div>
