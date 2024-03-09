@@ -1,8 +1,7 @@
 import React from 'react';
 import styles from './Card.module.scss';
-console.log(styles);
 
-function Card({title, imageUrl, price, onFavorite, onPlus}) {
+function Card({title, imageUrl, price, onFavorite, onPlus = () => {}}) {
     const [isAdded, setIsAdded] = React.useState(false);
 
     const onClickPlusik = () => {
@@ -22,7 +21,7 @@ function Card({title, imageUrl, price, onFavorite, onPlus}) {
                     <span>Цена:</span>
                     <b>{price}</b>
                 </div>
-                    <img className={styles.plusik} onClick={onClickPlusik} width={20} height={20} src={isAdded ? "/img/done.png" : "/img/greyplus.png"} alt="Plusik" />
+                <img className={styles.plusik} onClick={onClickPlusik} width={20} height={20} src={isAdded ? "/img/done.png" : "/img/greyplus.png"} alt="Plusik" />
             </div>
         </div>
     );

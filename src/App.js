@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios'; // Corrected import statement
+import axios from 'axios'; 
 import Card from './components/Card';
 import Header from './components/Header';
 import Drawer from './components/Drawer';
@@ -25,6 +25,9 @@ function App() {
     axios.post('https://65d8caaec96fbb24c1bc5059.mockapi.io/Cart', obj)
       .then(res => {
         setCartItems([...cartItems, obj]);
+      })
+      .catch(error => {
+        console.error('Error adding to cart:', error);
       });
   };
   
@@ -61,6 +64,7 @@ function App() {
               title={item.title} 
               price={item.price} 
               imageUrl={item.imageUrl}
+              onAddToCart={() => onAddToCart(item)}
             />
           ))}
         </div>
