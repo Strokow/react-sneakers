@@ -2,7 +2,18 @@ function Drawer({onClose, onRemove, items = []}) {
   return (
     <div className="overlay">
       <div className="drawer">
-        <h2 className="d-flex justify-between mb-30">Корзина <img onClick={onClose} width={28} height={28} className="cu-p" src="/img/remove.png" alt="Close" /> </h2> 
+        <h2 className="d-flex justify-between mb-30">Корзина <img onClick={onClose} width={28} height={28} className="cu-p" src="/img/remove.png" alt="Close" /> 
+        </h2> 
+        <div class="cartEmpty d-flex align-center justify-center flex-column flex">
+          <img class="mb-20" width={80} height={80} src="/img/box.png" alt="Empty cart"></img>
+          <h2>Корзина пустая</h2>
+          <p class="opacity-6">Добавьте хотя бы одну пару кроссовок, чтобы сделать заказ</p>
+          <button class="greenButton">
+            <img></img>
+            Вернуться назад
+          </button>
+
+        </div>
 
         <div className="items">
           {items.map((obj) => (
