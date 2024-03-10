@@ -1,20 +1,19 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios'; 
+import axios from 'axios'; // Corrected import statement
 import Card from './components/Card';
 import Header from './components/Header';
 import Drawer from './components/Drawer';
-
 function App() {
   const [items, setItems] = useState([]);
   const [cartItems, setCartItems] = useState([]);
   const [searchValue, setSearchValue] = useState('');
   const [cartOpened, setCartOpened] = useState(false);
-
   useEffect(() => {
     axios.get('https://65d8caaec96fbb24c1bc5059.mockapi.io/Items')
       .then(res => {
         setItems(res.data);
       });
+      axios.get('https://65d8caaec96fbb24c1bc5059.mockapi.io/Cart')
     axios.get('https://65d8caaec96fbb24c1bc5059.mockapi.io/Cart')
       .then(res => {
         setCartItems(res.data);
@@ -25,12 +24,9 @@ function App() {
     axios.post('https://65d8caaec96fbb24c1bc5059.mockapi.io/Cart', obj)
       .then(res => {
         setCartItems([...cartItems, obj]);
-      })
-      .catch(error => {
-        console.error('Error adding to cart:', error);
       });
   };
-  
+
   const onRemoveItem = (id) => {
     axios.delete(`https://65d8caaec96fbb24c1bc5059.mockapi.io/Cart/${id}`)
       .then(res => {
@@ -40,13 +36,14 @@ function App() {
         console.error('Error removing item:', error);
       });
   };
-  
+
   const onChangeSearchInput = (event) => {
     setSearchValue(event.target.value);
   };
-  
+
   return (
     <div className="wrapper clear">
+      {cartOpened && <Drawer items={cartItems} onClose={() => setCartOpened(false)} />}
       {cartOpened && <Drawer items={cartItems} onClose={() => setCartOpened(false)} onRemove={onRemoveItem} />}
       <Header onClickCart={() => setCartOpened(true)} />
       <div className="content p-40">
@@ -64,7 +61,8 @@ function App() {
               title={item.title} 
               price={item.price} 
               imageUrl={item.imageUrl}
-              onAddToCart={() => onAddToCart(item)}
+              onFavorite={() => console.log('Добавили в закладки')}
+              onPlus={() => onAddToCart(item)}
             />
           ))}
         </div>
@@ -72,5 +70,4 @@ function App() {
     </div>
   );
 }
-
 export default App;
