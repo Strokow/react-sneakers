@@ -10,6 +10,7 @@ function Card({title, imageUrl, price, onFavorite, onPlus = () => {}}) {
         setIsAdded(!isAdded);
     }
     const onClickFavorite = () => {
+        onFavorite({title, imageUrl, price});
         setIsFavorite(!isFavorite);
     }
 

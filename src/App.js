@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Route } from 'react-router-dom';
 import axios from 'axios';
 import Card from './components/Card';
 import Header from './components/Header';
@@ -7,9 +8,10 @@ import Drawer from './components/Drawer';
 function App() {
   const [items, setItems] = useState([]);
   const [cartItems, setCartItems] = useState([]);
+  const [favorites, setFavorites] = useState([]);
   const [searchValue, setSearchValue] = useState('');
   const [cartOpened, setCartOpened] = useState(false);
-  const [ setFavorites] = useState([]);
+
 
   useEffect(() => {
     axios.get('https://65d8caaec96fbb24c1bc5059.mockapi.io/Items')
@@ -44,7 +46,8 @@ function App() {
       .then(res => {
         setFavorites(prev => [...prev, obj]);
       });
-  }
+  };
+
 
   const onChangeSearchInput = (event) => {
     setSearchValue(event.target.value);
@@ -70,7 +73,7 @@ function App() {
               title={item.title} 
               price={item.price} 
               imageUrl={item.imageUrl}
-              onFavorite={(obj) => onAddToFavorite}
+              onFavorite={() => onAddToFavorite(item)}
               onPlus={() => onAddToCart(item)}
             />
           ))}
