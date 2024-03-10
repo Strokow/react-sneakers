@@ -49,7 +49,7 @@ function Drawer({onClose, onRemove, items = []}) {
               <h2>Корзина пустая</h2>
               <p className="opacity-6">Добавьте хотя бы одну пару кроссовок, чтобы сделать заказ</p>
               <button className="greenButton">
-                <img></img>
+                
                 Вернуться назад
               </button>
             </div>

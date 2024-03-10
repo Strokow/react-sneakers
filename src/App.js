@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios'; // Corrected import statement
+//import { Route } from 'react-router-dom';
+import axios from 'axios';
 import Card from './components/Card';
 import Header from './components/Header';
 import Drawer from './components/Drawer';
@@ -46,6 +47,7 @@ function App() {
       {cartOpened && <Drawer items={cartItems} onClose={() => setCartOpened(false)} />}
       {cartOpened && <Drawer items={cartItems} onClose={() => setCartOpened(false)} onRemove={onRemoveItem} />}
       <Header onClickCart={() => setCartOpened(true)} />
+      
       <div className="content p-40">
         <div className="d-flex align-center justify-between mb-40">
           <h1>{searchValue ? `Поиск по запросу: "${searchValue}"` : 'Все кроссовки'}</h1>

@@ -13,6 +13,9 @@ function Header(props) {
             <img width={30} height={30} src="img/korblogo2.png" alt="Korb Logo" /> 
             <span>1299 ₽</span>
           </li>
+          <li className="mr-20 cu-p">
+            <img width={30} height={30} src="img/heartunliked.svg" alt="Favorite icon"  />
+          </li>
           <li>
             <img width={30} height={30} src="img/usericon.png" alt="User icon"  />
           </li>
