@@ -1,20 +1,21 @@
 import React, { useEffect, useState } from 'react';
-//import { Route } from 'react-router-dom';
 import axios from 'axios';
 import Card from './components/Card';
 import Header from './components/Header';
 import Drawer from './components/Drawer';
+
 function App() {
   const [items, setItems] = useState([]);
   const [cartItems, setCartItems] = useState([]);
   const [searchValue, setSearchValue] = useState('');
   const [cartOpened, setCartOpened] = useState(false);
+  const [ setFavorites] = useState([]);
+
   useEffect(() => {
     axios.get('https://65d8caaec96fbb24c1bc5059.mockapi.io/Items')
       .then(res => {
         setItems(res.data);
       });
-      axios.get('https://65d8caaec96fbb24c1bc5059.mockapi.io/Cart')
     axios.get('https://65d8caaec96fbb24c1bc5059.mockapi.io/Cart')
       .then(res => {
         setCartItems(res.data);
@@ -24,19 +25,26 @@ function App() {
   const onAddToCart = (obj) => {
     axios.post('https://65d8caaec96fbb24c1bc5059.mockapi.io/Cart', obj)
       .then(res => {
-        setCartItems([...cartItems, obj]);
+        setCartItems(prev => [...prev, obj]);
       });
   };
 
   const onRemoveItem = (id) => {
     axios.delete(`https://65d8caaec96fbb24c1bc5059.mockapi.io/Cart/${id}`)
       .then(res => {
-        setCartItems((prev) => prev.filter(item => item.id !== id));
+        setCartItems(prev => prev.filter(item => item.id !== id));
       })
       .catch(error => {
         console.error('Error removing item:', error);
       });
   };
+
+  const onAddToFavorite = (obj) => {
+    axios.post('https://65edf45e08706c584d9aee34.mockapi.io/Favorites', obj)
+      .then(res => {
+        setFavorites(prev => [...prev, obj]);
+      });
+  }
 
   const onChangeSearchInput = (event) => {
     setSearchValue(event.target.value);
@@ -44,7 +52,6 @@ function App() {
 
   return (
     <div className="wrapper clear">
-      {cartOpened && <Drawer items={cartItems} onClose={() => setCartOpened(false)} />}
       {cartOpened && <Drawer items={cartItems} onClose={() => setCartOpened(false)} onRemove={onRemoveItem} />}
       <Header onClickCart={() => setCartOpened(true)} />
       
@@ -57,13 +64,13 @@ function App() {
           </div>
         </div>
         <div className="d-flex">
-          {items.filter(item => item.title && item.title.toLowerCase().includes(searchValue.toLowerCase())).map((item, index) => (
+          {items.filter(item => item.title.toLowerCase().includes(searchValue.toLowerCase())).map((item, index) => (
             <Card
               key={index}
               title={item.title} 
               price={item.price} 
               imageUrl={item.imageUrl}
-              onFavorite={() => console.log('Добавили в закладки')}
+              onFavorite={(obj) => onAddToFavorite}
               onPlus={() => onAddToCart(item)}
             />
           ))}
@@ -72,4 +79,5 @@ function App() {
     </div>
   );
 }
+
 export default App;

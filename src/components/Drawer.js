@@ -48,7 +48,7 @@ function Drawer({onClose, onRemove, items = []}) {
               <img className="mb-20" width={80} height={80} src="/img/box.png" alt="Empty cart"></img>
               <h2>Корзина пустая</h2>
               <p className="opacity-6">Добавьте хотя бы одну пару кроссовок, чтобы сделать заказ</p>
-              <button className="greenButton">
+              <button onClick={onClose} className="greenButton">
                 
                 Вернуться назад
               </button>
