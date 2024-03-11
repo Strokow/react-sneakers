@@ -4,6 +4,7 @@ import axios from 'axios';
 import Header from './components/Header';
 import Drawer from './components/Drawer';
 import Home from './pages/Home';
+import Favorites from './pages/Favorites';
 
 function App() {
   const [items, setItems] = useState([]);
@@ -20,6 +21,10 @@ function App() {
     axios.get('https://65d8caaec96fbb24c1bc5059.mockapi.io/Cart')
       .then(res => {
         setCartItems(res.data);
+      });
+      axios.get('https://65edf45e08706c584d9aee34.mockapi.io/Favorites')
+      .then(res => {
+        setFavorites(res.data);
       });
   }, []);
   
@@ -63,6 +68,11 @@ function App() {
           onChangeSearchInput={onChangeSearchInput}
           onAddToFavorite={onAddToFavorite}
           onAddToCart={onAddToCart}
+        />} />
+      </Routes>
+
+      <Routes>
+        <Route path="/favorites"  element={<Favorites items={favorites} onAddToFavorite={onAddToFavorite} 
         />} />
       </Routes>
     </div>
