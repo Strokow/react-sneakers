@@ -22,9 +22,7 @@ function Home({
           {initialItems.filter(item => item.title.toLowerCase().includes(searchValue.toLowerCase())).map((item, index) => (
             <Card
               key={index}
-              title={item.title} 
-              price={item.price} 
-              imageUrl={item.imageUrl}
+              {...item}
               onFavorite={() => onAddToFavorite(item)}
               onPlus={() => onAddToCart(item)}
             />
