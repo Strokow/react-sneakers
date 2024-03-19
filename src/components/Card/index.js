@@ -1,9 +1,13 @@
 import React from 'react';
+import ContentLoader from "react-content-loader";
 import styles from './Card.module.scss';
 
-function Card({id, title, imageUrl, price, onFavorite, onPlus, favorited = false, added}) {
+function Card({id, title, imageUrl, price, onFavorite, onPlus, favorited = false, added = false, loading = false}) {
     const [isAdded, setIsAdded] = React.useState(added);
     const [isFavorite, setIsFavorite] = React.useState(favorited);
+    React.useEffect(() => {
+        setIsAdded(added);
+    }, [added]);
 
     const onClickPlusik = () => {
         onPlus({title, imageUrl, price});
@@ -16,7 +20,24 @@ function Card({id, title, imageUrl, price, onFavorite, onPlus, favorited = false
 
     return (
         <div className={styles.card}>
-            <div className={styles.favorite} onClick={onClickFavorite}>
+            {
+                loading ?  <ContentLoader 
+                speed={2}
+                width={155}
+                height={270}
+                viewBox="0 0 150 270"
+                backgroundColor="#f3f3f3"
+                foregroundColor="#ecebeb"
+                
+              >
+                <rect x="0" y="32" rx="10" ry="10" width="150" height="155" /> 
+                <rect x="0" y="199" rx="5" ry="5" width="150" height="15" /> 
+                <rect x="235" y="318" rx="0" ry="0" width="0" height="1" /> 
+                <rect x="0" y="222" rx="5" ry="5" width="100" height="15" /> 
+                <rect x="0" y="241" rx="5" ry="5" width="99" height="25" /> 
+                <rect x="118" y="239" rx="5" ry="5" width="28" height="25" />
+              </ContentLoader> : <>
+              <div className={styles.favorite} onClick={onClickFavorite}>
                 <img width={20} height={20} src={isFavorite ? "/img/heart.png" : "/img/heartunliked.svg"} alt="Unliked" />
             </div>
             <img width={140} height={140} src={imageUrl} alt="Sneakers" />
@@ -28,6 +49,10 @@ function Card({id, title, imageUrl, price, onFavorite, onPlus, favorited = false
                 </div>
                 <img className={styles.plusik} onClick={onClickPlusik} width={20} height={20} src={isAdded ? "/img/done.png" : "/img/greyplus.png"} alt="Plusik" />
             </div>
+              </>
+            }
+           
+            
         </div>
     );
 }

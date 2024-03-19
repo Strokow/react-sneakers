@@ -12,26 +12,31 @@ function App() {
   const [favorites, setFavorites] = useState([]);
   const [searchValue, setSearchValue] = useState('');
   const [cartOpened, setCartOpened] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    async function fetchData() {
-      const CartResponse = await axios.get('https://65d8caaec96fbb24c1bc5059.mockapi.io/Cart')
-      .then(res => {
-        setCartItems(res.data);
-      });
-      const FavoritesResponse = await axios.get('https://65edf45e08706c584d9aee34.mockapi.io/Favorites')
-      .then(res => {
-        setFavorites(res.data);
-      });
-      const ItemsResponse = await axios.get('https://65d8caaec96fbb24c1bc5059.mockapi.io/Items')
-      .then(res => {
-        setItems(res.data);
-      });
-      
+  async function fetchData() {
+    setIsLoading(true);
+    const cartResponse = await axios.get('https://65d8caaec96fbb24c1bc5059.mockapi.io/Cart');
+    const cartItems = cartResponse.data;
+    setCartItems(cartItems);
+
+    const itemsResponse = await axios.get('https://65d8caaec96fbb24c1bc5059.mockapi.io/Items');
+    const items = itemsResponse.data;
+    setIsLoading(false);
     
-    }
-    fetchData();
-  }, []);
+    const updatedItems = items.map(item => {
+      if (cartItems.find(cartItem => cartItem.id === item.id)) {
+        return { ...item, isAdded: true };
+      }
+      return item;
+    });
+
+    setItems(updatedItems);
+  }
+
+  fetchData();
+}, []);
   
   const onAddToCart = (obj) => {
     
@@ -96,6 +101,7 @@ function App() {
           onChangeSearchInput={onChangeSearchInput}
           onAddToFavorite={onAddToFavorite}
           onAddToCart={onAddToCart}
+          isLoading={isLoading}
         />} />
         <Route path="/favorites"  element={<Favorites items={favorites} onAddToFavorite={onAddToFavorite} 
         />} />
