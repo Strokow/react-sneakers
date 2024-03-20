@@ -5,6 +5,11 @@ import Header from "./components/Header";
 import Drawer from "./components/Drawer";
 import Home from "./pages/Home";
 import Favorites from "./pages/Favorites";
+import AppContext from './context';
+
+
+
+
 
 function App() {
   const [items, setItems] = useState([]);
@@ -12,14 +17,19 @@ function App() {
   const [favorites, setFavorites] = useState([]);
   const [searchValue, setSearchValue] = useState("");
   const [cartOpened, setCartOpened] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  
 
   useEffect(() => {
+    setIsLoading(true);
     const fetchData = async () => {
       const { data: loadedCartItems } = await axios.get(
         "https://65d8caaec96fbb24c1bc5059.mockapi.io/Cart"
       );
+      
 
       setCartItems(loadedCartItems);
+      setIsLoading(false);
     };
 
     fetchData();
@@ -105,9 +115,13 @@ function App() {
   const handleSearchInputChange = (event) => {
     setSearchValue(event.target.value);
   };
+  const isItemAdded = (id) => {
+    return cartItems.some((obj) => Number(obj.id) === Number(id));
+  }
 
   return (
-    <div className="wrapper clear">
+    <AppContext.Provider value={{ items, cartItems, favorites, isLoading, isItemAdded}}>
+      <div className="wrapper clear">
       {cartOpened && (
         <Drawer
           items={cartItems}
@@ -128,6 +142,7 @@ function App() {
               onChangeSearchInput={handleSearchInputChange}
               onAddToFavorite={handleAddToFavorite}
               onAddToCart={onAddToCart}
+              isLoading={isLoading}
             />
           }
         />
@@ -135,13 +150,14 @@ function App() {
           path="/favorites"
           element={
             <Favorites
-              items={favorites}
+              
               onAddToFavorite={handleAddToFavorite}
             />
           }
         />
       </Routes>
     </div>
+    </AppContext.Provider>
   );
 }
 
