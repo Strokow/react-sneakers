@@ -1,14 +1,38 @@
 import React from 'react'; 
+import axios from 'axios';
 import Info from './Info';
 import AppContext from '../context';
 
+const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
 function Drawer({onClose, onRemove, items = []}) {
-  const {setCartItems} = React.useContext(AppContext);
+  const {cartItems, setCartItems} = React.useContext(AppContext);
+  const [orderId, setOrderId] = React.useState(null);
   const [isOrderCompleted, setIsOrderCompleted] = React.useState(false);
-  const onClickOrder = () => {
-    setIsOrderCompleted(true);
-    setCartItems([]);
-  }
+  const [isLoading, setIsLoading] = React.useState(false);
+  
+
+  const onClickOrder = async () => {
+    try {
+      setIsLoading(true);
+     
+      const {data} = await axios.put('https://65d8caaec96fbb24c1bc5059.mockapi.io/Orders/' + orderId, {items: cartItems, orderId: orderId});
+      setOrderId(data.id);
+      setIsOrderCompleted(true);
+      setCartItems([]);
+      
+      for (let i = 0; i < cartItems.length; i++) {
+        const item = cartItems[i];
+        await axios.delete('https://65d8caaec96fbb24c1bc5059.mockapi.io/Cart/' + item.id);
+        await delay(1000);
+      }
+    } catch (error) {
+      console.error(error.response.data);
+      alert('Ошибка при создании заказа :(');
+    }
+    setIsLoading(false);
+  };
+  
   return (
     <div className="overlay">
       <div className="drawer">
@@ -48,15 +72,14 @@ function Drawer({onClose, onRemove, items = []}) {
                     <b>3000 ₽</b>
                   </li>
                 </ul>
-                <button onClick={onClickOrder} className="greenButton">Оформить заказ</button>
+                <button disabled={isLoading} onClick={onClickOrder} className="greenButton">Оформить заказ</button>
               </div>
             </>
           ) : (
             <Info title={isOrderCompleted ? "Заказ оформлен!" : "Корзина пустая"} 
-            description={isOrderCompleted ? "Ваш заказ #18 скоро будет передан курьерской доставке " : "Добавьте хотя бы одну пару кроссовок, чтобы сделать заказ"} 
+            description={isOrderCompleted ? "Ваш заказ #" + orderId + " скоро будет передан курьерской доставке " : "Добавьте хотя бы одну пару кроссовок, чтобы сделать заказ"} 
             image={isOrderCompleted ? "/img/list.png" : "/img/box.png"} 
             />
-            
           )
         }
       </div>
