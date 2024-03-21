@@ -1,9 +1,9 @@
 import React from 'react'; 
-import axios from 'axios';
+// import axios from 'axios';
 import Info from './Info';
 import AppContext from '../context';
 
-const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+// const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 function Drawer({onClose, onRemove, items = []}) {
   const {cartItems, setCartItems} = React.useContext(AppContext);
@@ -16,16 +16,18 @@ function Drawer({onClose, onRemove, items = []}) {
     try {
       setIsLoading(true);
      
-      const {data} = await axios.put('https://65d8caaec96fbb24c1bc5059.mockapi.io/Orders/' + orderId, {items: cartItems, orderId: orderId});
-      setOrderId(data.id);
+      // Закомментировано: отправка заказа в API
+      // const {data} = await axios.put('https://65d8caaec96fbb24c1bc5059.mockapi.io/Orders/' + orderId, {items: cartItems, orderId: orderId});
+      // setOrderId(data.id);
       setIsOrderCompleted(true);
       setCartItems([]);
       
-      for (let i = 0; i < cartItems.length; i++) {
-        const item = cartItems[i];
-        await axios.delete('https://65d8caaec96fbb24c1bc5059.mockapi.io/Cart/' + item.id);
-        await delay(1000);
-      }
+      // Закомментировано: удаление элементов корзины из API
+      // for (let i = 0; i < cartItems.length; i++) {
+      //   const item = cartItems[i];
+      //   await axios.delete('https://65d8caaec96fbb24c1bc5059.mockapi.io/Cart/' + item.id);
+      //   await delay(1000);
+      // }
     } catch (error) {
       console.error(error.response.data);
       alert('Ошибка при создании заказа :(');
