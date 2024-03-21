@@ -1,17 +1,19 @@
 import React from 'react';
 import ContentLoader from "react-content-loader";
 import styles from './Card.module.scss';
+import AppContext from '../../context';
 
 function Card({id, title, imageUrl, price, onFavorite, onPlus, favorited = false, added = false, loading = false}) {
-    const [isAdded, setIsAdded] = React.useState(added);
+    const {isItemAdded } = React.useContext(AppContext);
+    
     const [isFavorite, setIsFavorite] = React.useState(favorited);
     React.useEffect(() => {
-        setIsAdded(added);
+        
     }, [added]);
 
     const onClickPlusik = () => {
         onPlus({title, imageUrl, price});
-        setIsAdded(!isAdded);
+        
     }
     const onClickFavorite = () => {
         onFavorite({id, title, imageUrl, price});
@@ -47,7 +49,7 @@ function Card({id, title, imageUrl, price, onFavorite, onPlus, favorited = false
                     <span>Цена:</span>
                     <b>{price}</b>
                 </div>
-                <img className={styles.plusik} onClick={onClickPlusik} width={20} height={20} src={isAdded ? "/img/done.png" : "/img/greyplus.png"} alt="Plusik" />
+                <img className={styles.plusik} onClick={onClickPlusik} width={20} height={20} src={isItemAdded(id) ? "/img/done.png" : "/img/greyplus.png"} alt="Plusik" />
             </div>
               </>
             }
