@@ -19,6 +19,7 @@ function App() {
   const [cartOpened, setCartOpened] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   
+  
 
   useEffect(() => {
     setIsLoading(true);
