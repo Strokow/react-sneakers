@@ -5,6 +5,7 @@ import Header from "./components/Header";
 import Drawer from "./components/Drawer";
 import Home from "./pages/Home";
 import Favorites from "./pages/Favorites";
+import Orders from "./pages/Orders";
 import AppContext from './context';
 
 
@@ -132,28 +133,31 @@ function App() {
       )}
       <Header onClickCart={() => setCartOpened(true)} />
       <Routes>
-        <Route
-          path="/"
-          element={
-            <Home
-              items={items}
-              cartItems={cartItems}
-              searchValue={searchValue}
-              setSearchValue={setSearchValue}
-              onChangeSearchInput={handleSearchInputChange}
-              onAddToFavorite={handleAddToFavorite}
-              onAddToCart={onAddToCart}
-              isLoading={isLoading}
-            />
-          }
-        />
-        <Route
-          path="/favorites"
-          element={
-            <Favorites/>
-          }
-        />
-      </Routes>
+  <Route
+    path="/"
+    element={
+      <Home
+        items={items}
+        cartItems={cartItems}
+        searchValue={searchValue}
+        setSearchValue={setSearchValue}
+        onChangeSearchInput={handleSearchInputChange}
+        onAddToFavorite={handleAddToFavorite}
+        onAddToCart={onAddToCart}
+        isLoading={isLoading}
+      />
+    }
+  />
+  <Route
+    path="/favorites"
+    element={<Favorites />}
+  />
+  <Route
+    path="/orders"
+    exact
+    element={<Orders />} // Add your component here
+  />
+</Routes>
     </div>
     </AppContext.Provider>
   );
