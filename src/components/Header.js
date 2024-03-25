@@ -23,7 +23,8 @@ function Header(props) {
                     <Link to="/favorites"><img width={30} height={30} src="img/heartunliked.svg" alt="Favorite icon" /></Link>
                 </li>
                 <li>
-                    <img width={30} height={30} src="img/usericon.png" alt="User icon" />
+                <Link to="/orders"><img width={30} height={30} src="img/usericon.png" alt="orders" /></Link>
+                    
                 </li>
             </ul>
         </header>
