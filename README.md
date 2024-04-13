@@ -1,5 +1,5 @@
 # react-sneakers
-My first independent project, which I started after I finally decided to focus on Frontend development. 
+My first independent test project, which I started after I finally decided to focus on Frontend development. 
 
 ## Languages and frameworks
 - JavaScript
