@@ -19,11 +19,13 @@ My first independent project, which I started after I finally decided to focus o
 - YouTube tutorials
 
 ## Difficulties
-• Setting up the correct display of elements from MokAPI
-• Resolving the conflict between the child and parent product ID
+- Setting up the correct display of elements from MokAPI
+- Resolving the conflict between the child and parent product ID
 
 Please do not judge this project strictly :)
-- Alexej Strokow 2024
+Best regsrds,
+Alexej Strokow
+- 2024
 
 
 
