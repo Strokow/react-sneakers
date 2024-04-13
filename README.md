@@ -23,7 +23,7 @@ My first independent project, which I started after I finally decided to focus o
 - Resolving the conflict between the child and parent product ID
 
 Please do not judge this project strictly :)
-Best regsrds,
+Best regards,
 Alexej Strokow
 - 2024
 
