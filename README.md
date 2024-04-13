@@ -2,9 +2,9 @@
 My first independent project, which I started after I finally decided to focus on Frontend development. 
 
 ## Languages and frameworks
-• JavaScript
-• SCSS
-• HTML
+- JavaScript
+- SCSS
+- HTML
 • React
 • React Hooks
 • React Skeleton
