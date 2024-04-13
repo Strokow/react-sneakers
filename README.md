@@ -2,15 +2,15 @@
 My first independent project, which I started after I finally decided to focus on Frontend development. 
 
 # Languages and frameworks
-+• JavaScript
-+• SCSS
-+• HTML
-+• React
-+• React Hooks
-+• React Skeleton
-+• React Route
-+• Node.js
-+• Git
++JavaScript
++SCSS
++HTML
++React
++React Hooks
++React Skeleton
++React Route
++Node.js
++Git
 
 # Additional tools
 +• Adobe Illustrator (main logo)
